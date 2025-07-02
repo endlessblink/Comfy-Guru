@@ -1,3 +1,5 @@
+![Comfy-Guru](docs/Images/Comfy-Guru.png)
+
 # ComfyUI Log Debugger MCP Server (comfy-guru)
 
 A Model Context Protocol (MCP) server that helps you debug ComfyUI by discovering and analyzing log files through Claude Desktop.
