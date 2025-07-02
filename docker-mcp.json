@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "comfy-guru-docker": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-v", "C:/:/mnt/c:ro",
+        "-v", "D:/:/mnt/d:ro",
+        "comfy-guru:latest"
+      ]
+    }
+  }
+}

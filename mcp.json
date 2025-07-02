@@ -1,0 +1,65 @@
+{
+  "mcpServers": {
+    "comfy-guru": {
+      "command": "/usr/bin/python3",
+      "args": [
+        "/mnt/d/APPSNospaces/comfy-guru/standalone_mcp_server.py"
+      ]
+    },
+    "like-i-said-v2": {
+      "command": "node",
+      "args": [
+        "/mnt/d/APPSNospaces/Like-I-said-mcp-server-v2/server-markdown.js"
+      ]
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-puppeteer"
+      ]
+    },
+    "playwright-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ]
+    },
+    "perplexity-ask": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "server-perplexity-ask"
+      ],
+      "env": {
+        "PERPLEXITY_API_KEY": "your-perplexity-api-key-here"
+      }
+    },
+    "github": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "GITHUB_PERSONAL_ACCESS_TOKEN",
+        "ghcr.io/github/github-mcp-server"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "your-github-personal-access-token-here"
+      }
+    },
+    "server-sequential-thinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@smithery/cli@latest",
+        "run",
+        "@smithery-ai/server-sequential-thinking",
+        "--key",
+        "e897d3d5-f1c9-4f3e-83eb-05a0acf23558"
+      ]
+      }
+    }
+  }

@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  comfy-guru:
+    build: .
+    image: comfy-guru:latest
+    container_name: comfy-guru-mcp
+    
+    # Mount Windows drives for log access
+    volumes:
+      # For Windows Docker Desktop
+      - type: bind
+        source: C:/
+        target: /mnt/c
+        read_only: true
+      - type: bind
+        source: D:/
+        target: /mnt/d
+        read_only: true
+      # Add more drives as needed
+      # - E:/:/mnt/e:ro
+      
+      # For WSL2 Docker
+      # - /mnt/c:/mnt/c:ro
+      # - /mnt/d:/mnt/d:ro
+      
+      # Cache directory for faster discovery
+      - comfy-cache:/app/.cache
+    
+    # Environment variables
+    environment:
+      - PYTHONUNBUFFERED=1
+      - COMFYUI_DISCOVERY_CACHE=/app/.cache/discovery.json
+    
+    # Keep container running for MCP
+    stdin_open: true
+    tty: true
+    
+    # Restart policy
+    restart: unless-stopped
+    
+    # Resource limits (optional)
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+
+volumes:
+  comfy-cache:

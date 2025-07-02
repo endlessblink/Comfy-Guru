@@ -1,0 +1,27 @@
+{
+  "CUDA_OUT_OF_MEMORY": [
+    "CUDA out of memory",
+    "OOM",
+    "out of memory"
+  ],
+  "NodeExecutionFailure": [
+    "Error occurred when executing",
+    "failed to execute",
+    "NodeException"
+  ],
+  "DependencyNotFound": [
+    "ModuleNotFoundError",
+    "No module named",
+    "cannot import name"
+  ],
+  "PromptExecutionError": [
+    "Prompt parsing error",
+    "Invalid prompt",
+    "Failed to load prompt"
+  ],
+  "GeneralError": [
+    "Error:",
+    "Exception:",
+    "Traceback (most recent call last)"
+  ]
+}
