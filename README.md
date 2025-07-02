@@ -63,16 +63,53 @@ See [INSTALL.md](INSTALL.md) for manual configuration of Claude Desktop.
 
 The installer creates a `.env` file. Edit it to add custom ComfyUI paths:
 
-```env
-# Your ComfyUI installations
-COMFYUI_PATHS=C:\ComfyUI,D:\MY PROJECTS\AI\ComfyUI
+### Adding ComfyUI Paths Manually
 
-# Search these directories for ComfyUI
+Edit the `.env` file and add paths separated by commas:
+
+```env
+# Your ComfyUI installations (comma-separated)
+COMFYUI_PATHS=C:\ComfyUI,D:\MY PROJECTS\AI\ComfyUI,E:\Another\ComfyUI
+
+# Search directories (only used if deep search is enabled)
 COMFYUI_SEARCH_DIRS=C:\,D:\,E:\
 
-# Enable deep search
-COMFYUI_DEEP_SEARCH=true
+# Deep search is OFF by default for performance
+COMFYUI_DEEP_SEARCH=false
 ```
+
+### About Deep Search
+
+**Deep search is OFF by default** because:
+- ✅ Manual paths are found instantly (< 1 second)
+- ❌ Deep search can take 30-100+ seconds
+- ❌ Can cause permission errors on system folders
+
+### How to Use Deep Search Temporarily
+
+1. **Enable deep search** to find all installations:
+   ```env
+   COMFYUI_DEEP_SEARCH=true
+   ```
+
+2. **Run the discovery** in Claude Desktop:
+   ```
+   "Find all my ComfyUI installations"
+   ```
+
+3. **Note the paths** it finds
+
+4. **Add them to COMFYUI_PATHS** manually:
+   ```env
+   COMFYUI_PATHS=path1,path2,path3,newly_found_path
+   ```
+
+5. **Turn deep search OFF** again:
+   ```env
+   COMFYUI_DEEP_SEARCH=false
+   ```
+
+This way you get the benefit of discovery without the performance penalty!
 
 ## 🧪 Testing
 
