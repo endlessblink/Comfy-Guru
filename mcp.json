@@ -3,7 +3,7 @@
     "comfy-guru": {
       "command": "/usr/bin/python3",
       "args": [
-        "/mnt/d/APPSNospaces/comfy-guru/standalone_mcp_server.py"
+        "/mnt/d/APPSNospaces/comfy-guru/src/standalone_mcp_server.py"
       ]
     },
     "like-i-said-v2": {
@@ -60,6 +60,6 @@
         "--key",
         "e897d3d5-f1c9-4f3e-83eb-05a0acf23558"
       ]
-      }
     }
   }
+}
