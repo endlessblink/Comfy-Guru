@@ -7,7 +7,7 @@ The .dxt file is a Claude Desktop extension that must be installed through Claud
 ## 📋 Installation Steps:
 
 ### 1. Download the Extension
-- Go to: https://github.com/Shiba-2-shiba/comfy-guru
+- Go to: https://github.com/endlessblink/comfy-guru
 - Click on `comfy-guru.dxt`
 - Click "Download" button
 - Save it somewhere you can find it (e.g., Downloads folder)
@@ -56,7 +56,7 @@ Try asking Claude:
 If the extension method doesn't work, you can use the traditional installation:
 
 ```batch
-git clone https://github.com/Shiba-2-shiba/comfy-guru.git
+git clone https://github.com/endlessblink/comfy-guru.git
 cd comfy-guru
 install.bat
 ```

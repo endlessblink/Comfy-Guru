@@ -11,8 +11,8 @@ if ! command -v python3 &> /dev/null; then
     exit 1
 fi
 
-# Run the easy installer
-python3 easy_install.py
+# Run the installer
+python3 install.py
 
 if [ $? -ne 0 ]; then
     echo

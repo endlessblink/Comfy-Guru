@@ -21,9 +21,9 @@ mkdir -p "$INSTALL_DIR"
 # Download latest release (replace with actual URL)
 echo "📥 Downloading..."
 if command -v curl &> /dev/null; then
-    curl -L https://github.com/yourusername/comfy-guru/archive/main.zip -o /tmp/comfy-guru.zip
+    curl -L https://github.com/endlessblink/comfy-guru/archive/main.zip -o /tmp/comfy-guru.zip
 elif command -v wget &> /dev/null; then
-    wget https://github.com/yourusername/comfy-guru/archive/main.zip -O /tmp/comfy-guru.zip
+    wget https://github.com/endlessblink/comfy-guru/archive/main.zip -O /tmp/comfy-guru.zip
 else
     echo "❌ curl or wget required"
     exit 1

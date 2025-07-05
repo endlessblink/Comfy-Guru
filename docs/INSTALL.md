@@ -6,14 +6,14 @@ This MCP server helps you debug ComfyUI installations by discovering and analyzi
 
 ### Windows
 ```batch
-git clone https://github.com/yourusername/comfy-guru.git
+git clone https://github.com/endlessblink/comfy-guru.git
 cd comfy-guru
 install.bat
 ```
 
 ### Linux/Mac
 ```bash
-git clone https://github.com/yourusername/comfy-guru.git
+git clone https://github.com/endlessblink/comfy-guru.git
 cd comfy-guru
 ./install.sh
 ```
@@ -28,7 +28,7 @@ The installer will:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/comfy-guru.git
+git clone https://github.com/endlessblink/comfy-guru.git
 cd comfy-guru
 
 # Build Docker image

@@ -4,7 +4,7 @@
 
 ### Step 1: Get the Code
 ```bash
-git clone https://github.com/yourusername/comfy-guru.git
+git clone https://github.com/endlessblink/comfy-guru.git
 cd comfy-guru
 ```
 

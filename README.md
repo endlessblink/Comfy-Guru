@@ -9,7 +9,7 @@ A Model Context Protocol (MCP) server that helps you debug ComfyUI by discoverin
 ### Option 1: Desktop Extension (NEW! ✨)
 The easiest way - one-click install for Claude Desktop 0.7.0+:
 
-1. **[Download comfy-guru.dxt](https://github.com/Shiba-2-shiba/comfy-guru/raw/main/comfy-guru.dxt)**
+1. **[Download comfy-guru.dxt](https://github.com/endlessblink/comfy-guru/raw/main/comfy-guru.dxt)**
 2. Open Claude Desktop and go to: **Settings → Developer → Edit Config**
 3. Click **"Install Extension..."** button
 4. Select the downloaded `comfy-guru.dxt` file
@@ -23,14 +23,14 @@ The easiest way - one-click install for Claude Desktop 0.7.0+:
 
 #### Windows
 ```batch
-git clone https://github.com/yourusername/comfy-guru.git
+git clone https://github.com/endlessblink/comfy-guru.git
 cd comfy-guru
 install.bat
 ```
 
 #### Linux/Mac
 ```bash
-git clone https://github.com/yourusername/comfy-guru.git
+git clone https://github.com/endlessblink/comfy-guru.git
 cd comfy-guru
 ./install.sh
 ```

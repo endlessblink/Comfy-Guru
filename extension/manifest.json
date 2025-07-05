@@ -30,24 +30,24 @@
   },
   "tools": [
     {
-      "name": "find_comfyui_installations",
-      "description": "Find all ComfyUI installations on the system"
+      "name": "get_logs",
+      "description": "Find all ComfyUI installations and their log files on the system"
     },
     {
-      "name": "analyze_log_file",
-      "description": "Analyze a ComfyUI log file for errors and issues"
+      "name": "find_errors",
+      "description": "Find and analyze errors in a ComfyUI log file with optional time filtering"
     },
     {
-      "name": "get_recent_errors",
-      "description": "Get recent errors from ComfyUI logs"
+      "name": "tail_log",
+      "description": "Monitor and display the last lines of a ComfyUI log file in real-time"
     },
     {
-      "name": "monitor_log_realtime",
-      "description": "Monitor ComfyUI log in real-time"
+      "name": "monitor_gpu_memory_warnings",
+      "description": "Monitor GPU memory warnings and CUDA out of memory errors in logs"
     },
     {
-      "name": "search_logs",
-      "description": "Search logs for specific patterns or errors"
+      "name": "find_workflow_by_id",
+      "description": "Find specific workflow execution details by workflow ID in logs"
     }
   ],
   "prompts": [],

@@ -14,14 +14,14 @@ A complete installation system for the comfy-guru MCP server that:
 
 #### Windows Users:
 ```batch
-git clone https://github.com/yourusername/comfy-guru.git
+git clone https://github.com/endlessblink/comfy-guru.git
 cd comfy-guru
 install.bat
 ```
 
 #### Linux/Mac Users:
 ```bash
-git clone https://github.com/yourusername/comfy-guru.git
+git clone https://github.com/endlessblink/comfy-guru.git
 cd comfy-guru
 ./install.sh
 ```

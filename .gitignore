@@ -27,6 +27,12 @@ memories/
 *.log
 /test_*.py
 examples/*.log
+/run_server.sh
+
+# Environment variables
+.env
+.env.local
+.env.*.local
 
 # OS
 .DS_Store

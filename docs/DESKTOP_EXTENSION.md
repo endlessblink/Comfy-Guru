@@ -62,4 +62,4 @@ For enterprise users:
 
 - [Anthropic Desktop Extensions](https://www.anthropic.com/engineering/desktop-extensions)
 - [MCP Documentation](https://modelcontextprotocol.io)
-- [ComfyUI Log Debugger GitHub](https://github.com/Shiba-2-shiba/comfy-guru)
+- [ComfyUI Log Debugger GitHub](https://github.com/endlessblink/comfy-guru)

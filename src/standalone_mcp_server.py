@@ -20,6 +20,8 @@ def main():
     mcp.tool()(debugger.get_logs)
     mcp.tool()(debugger.find_errors) 
     mcp.tool()(debugger.tail_log)
+    mcp.tool()(debugger.monitor_gpu_memory_warnings)
+    mcp.tool()(debugger.find_workflow_by_id)
     
     # Run the server
     mcp.run()
