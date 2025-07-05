@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "description": "AI-powered log analysis for ComfyUI - automatically finds and analyzes your ComfyUI logs to identify errors, performance issues, and provide solutions",
   "author": {
-    "name": "Shiba-2-shiba"
+    "name": "endlessblink",
+    "email": "support@comfy-guru.dev"
   },
   "server": {
     "type": "python",
@@ -20,16 +21,36 @@
   "icon": "icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Shiba-2-shiba/comfy-guru"
+    "url": "https://github.com/endlessblink/comfy-guru"
   },
-  "homepage": "https://github.com/Shiba-2-shiba/comfy-guru",
-  "support": "https://github.com/Shiba-2-shiba/comfy-guru/issues",
-  "compatibility": {
-    "platforms": ["darwin", "win32", "linux"],
-    "runtimes": {
-      "python": ">=3.8,<4.0"
+  "homepage": "https://github.com/endlessblink/comfy-guru",
+  "support": "https://github.com/endlessblink/comfy-guru/issues",
+  "requirements": {
+    "python": ">=3.6"
+  },
+  "tools": [
+    {
+      "name": "find_comfyui_installations",
+      "description": "Find all ComfyUI installations on the system"
+    },
+    {
+      "name": "analyze_log_file",
+      "description": "Analyze a ComfyUI log file for errors and issues"
+    },
+    {
+      "name": "get_recent_errors",
+      "description": "Get recent errors from ComfyUI logs"
+    },
+    {
+      "name": "monitor_log_realtime",
+      "description": "Monitor ComfyUI log in real-time"
+    },
+    {
+      "name": "search_logs",
+      "description": "Search logs for specific patterns or errors"
     }
-  },
+  ],
+  "prompts": [],
   "user_config": {
     "comfyui_path": {
       "type": "string",
