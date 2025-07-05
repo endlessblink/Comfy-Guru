@@ -24,6 +24,8 @@ Or configure it permanently - see [Setup Guide](SETUP_GUIDE.md)
 
 **Note:** Don't double-click the .dxt file - install it through Claude Desktop's settings.
 
+**Important:** After installation, **fully restart Claude Desktop** for the MCP extension to work properly.
+
 ### For Developers:
 - To modify and rebuild the extension: `python build_extension.py`
 - This creates a new `comfy-guru.dxt` from source files
