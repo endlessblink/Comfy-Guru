@@ -49,7 +49,6 @@ def create_extension():
         ("src/server_launcher.py", "server/server_launcher.py"),
         ("src/windows_launcher.bat", "server/windows_launcher.bat"),
         ("src/minimal_test_server.py", "server/minimal_test_server.py"),
-        ("src/start_server.bat", "server/start_server.bat"),
         ("src/setup_lib.bat", "server/setup_lib.bat"),
         ("src/setup_lib.py", "server/setup_lib.py"),
     ]

@@ -19,6 +19,9 @@ miniconda*/
 *.swp
 *.swo
 
+# Claude Desktop
+.claude/
+
 # Project specific
 .discovery_cache.json
 .mcp_server.pid

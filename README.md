@@ -15,36 +15,18 @@ Or configure it permanently - see [Setup Guide](SETUP_GUIDE.md)
 
 ## 🚀 Quick Installation (30 seconds)
 
-### Option 1: Desktop Extension (NEW! ✨)
-The easiest way - one-click install for Claude Desktop 0.7.0+:
-
-1. **[Download comfy-guru.dxt](https://github.com/endlessblink/comfy-guru/raw/main/comfy-guru.dxt)**
-2. Open Claude Desktop and go to: **Settings → Developer → Edit Config**
-3. Click **"Install Extension..."** button
+### For Users:
+1. **[Download comfy-guru.dxt](https://github.com/endlessblink/comfy-guru/releases/latest/download/comfy-guru.dxt)** (pre-built extension)
+2. Open Claude Desktop and go to: **Settings → Extensions**
+3. Click **"Install Extension..."** 
 4. Select the downloaded `comfy-guru.dxt` file
 5. Done! No git clone, no Python setup needed!
 
 **Note:** Don't double-click the .dxt file - install it through Claude Desktop's settings.
 
-[See Desktop Extension Guide](docs/DESKTOP_EXTENSION.md)
-
-### Option 2: Traditional Install
-
-#### Windows
-```batch
-git clone https://github.com/endlessblink/comfy-guru.git
-cd comfy-guru
-install.bat
-```
-
-#### Linux/Mac
-```bash
-git clone https://github.com/endlessblink/comfy-guru.git
-cd comfy-guru
-./install.sh
-```
-
-That's it! Restart Claude Desktop and type: **"Find my ComfyUI logs"**
+### For Developers:
+- To modify and rebuild the extension: `python build_extension.py`
+- This creates a new `comfy-guru.dxt` from source files
 
 ## 🎯 What It Does
 
@@ -53,6 +35,8 @@ That's it! Restart Claude Desktop and type: **"Find my ComfyUI logs"**
 - **Analyzes errors** and categorizes them (CUDA, Node execution, Dependencies, etc.)
 - **Monitors logs in real-time** for new errors
 - **Works everywhere** - Windows, macOS, Linux, Docker
+
+![Comfy-Guru in action](docs/Images/comfy-guru-screen.png)
 
 ## 📋 Example Commands in Claude Desktop
 
