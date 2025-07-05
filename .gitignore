@@ -25,7 +25,7 @@ miniconda*/
 mcp_server_output.log
 memories/
 *.log
-test_*.py
+/test_*.py
 examples/*.log
 
 # OS
