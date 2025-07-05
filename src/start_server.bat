@@ -4,9 +4,20 @@ REM This script handles both python and python3 commands
 
 setlocal enabledelayedexpansion
 
-REM Get the directory of this script
+REM Get the directory of this script (remove trailing backslash)
 set "SCRIPT_DIR=%~dp0"
 set "SCRIPT_DIR=%SCRIPT_DIR:~0,-1%"
+
+REM Check if dependencies are installed
+if not exist "%SCRIPT_DIR%\lib\fastmcp" (
+    echo Installing dependencies for first run...
+    cd /d "%SCRIPT_DIR%"
+    python -m pip install fastmcp python-dotenv aiofiles psutil watchdog --target lib --quiet
+    if !errorlevel! neq 0 (
+        echo Failed to install dependencies
+        exit /b 1
+    )
+)
 
 REM Set PYTHONPATH to include current and lib directories
 set "PYTHONPATH=%SCRIPT_DIR%;%SCRIPT_DIR%\lib;%PYTHONPATH%"
@@ -32,5 +43,6 @@ exit /b 1
 
 :run_server
 echo Starting ComfyUI Log Debugger MCP Server with %PYTHON_CMD%...
-%PYTHON_CMD% -u "%SCRIPT_DIR%\standalone_mcp_server.py" %*
+cd /d "%SCRIPT_DIR%"
+%PYTHON_CMD% -u standalone_mcp_server.py %*
 exit /b !errorlevel!

@@ -9,6 +9,7 @@ import platform
 from pathlib import Path
 from typing import List, Set, Dict
 import time
+import sys
 
 class SimpleActiveDiscovery:
     def __init__(self):
@@ -61,7 +62,8 @@ class SimpleActiveDiscovery:
                                     path = Path(script).parent
                                     if path.exists():
                                         active.add(str(path.resolve()))
-                                        print(f"   [ACTIVE] Found running ComfyUI: {path}")
+                                        # Log to stderr for debugging
+                                        print(f"   [ACTIVE] Found running ComfyUI: {path}", file=sys.stderr)
                                         break
             else:
                 # Unix-like systems
@@ -77,7 +79,7 @@ class SimpleActiveDiscovery:
                                     print(f"   [ACTIVE] Found running ComfyUI: {path}")
                                     break
         except Exception as e:
-            print(f"   Error checking processes: {e}")
+            print(f"   Error checking processes: {e}", file=sys.stderr)
             
         return active
     
@@ -121,48 +123,49 @@ class SimpleActiveDiscovery:
     
     def discover(self) -> Dict:
         """Simple discovery focusing on active and known installations"""
-        print("Simple Active ComfyUI Discovery")
-        print("-" * 40)
+        # Log to stderr instead of stdout
+        print("Simple Active ComfyUI Discovery", file=sys.stderr)
+        print("-" * 40, file=sys.stderr)
         
         start_time = time.time()
         all_installations = set()
         
         # 1. Check known paths from .env
-        print("1. Checking known paths...")
+        print("1. Checking known paths...", file=sys.stderr)
         for path in self.known_paths:
             if self.verify_installation(path):
                 all_installations.add(path)
-                print(f"   [KNOWN] {path}")
+                print(f"   [KNOWN] {path}", file=sys.stderr)
             else:
-                print(f"   [INVALID] {path} - not found or incomplete")
+                print(f"   [INVALID] {path} - not found or incomplete", file=sys.stderr)
         
         # 2. Find active processes
-        print("\n2. Checking for running ComfyUI processes...")
+        print("\n2. Checking for running ComfyUI processes...", file=sys.stderr)
         active = self.find_active_comfyui()
         all_installations.update(active)
         
         if not active:
-            print("   No active ComfyUI processes found")
-            print("   TIP: Start ComfyUI to automatically discover new installations")
+            print("   No active ComfyUI processes found", file=sys.stderr)
+            print("   TIP: Start ComfyUI to automatically discover new installations", file=sys.stderr)
         
         # 3. Collect all log files
-        print("\n3. Collecting log files...")
+        print("\n3. Collecting log files...", file=sys.stderr)
         all_logs = []
         
         for installation in all_installations:
             logs = self.find_log_files(installation)
             all_logs.extend(logs)
             if logs:
-                print(f"   {installation}: {len(logs)} logs")
+                print(f"   {installation}: {len(logs)} logs", file=sys.stderr)
         
         # Sort by modification time
         all_logs.sort(key=lambda x: os.path.getmtime(x) if os.path.exists(x) else 0, reverse=True)
         
         elapsed = time.time() - start_time
         
-        print(f"\nDiscovery completed in {elapsed:.2f} seconds")
-        print(f"Found {len(all_installations)} installations")
-        print(f"Found {len(all_logs)} log files")
+        print(f"\nDiscovery completed in {elapsed:.2f} seconds", file=sys.stderr)
+        print(f"Found {len(all_installations)} installations", file=sys.stderr)
+        print(f"Found {len(all_logs)} log files", file=sys.stderr)
         
         return {
             'installations': sorted(list(all_installations)),

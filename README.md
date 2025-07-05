@@ -4,6 +4,15 @@
 
 A Model Context Protocol (MCP) server that helps you debug ComfyUI by discovering and analyzing log files through Claude Desktop.
 
+## 🚨 IMPORTANT: Tell Claude Where ComfyUI Is Located!
+
+**If ComfyUI isn't found automatically, just tell Claude in chat:**
+```
+"My ComfyUI is at D:\MY PROJECTS\AI\STABLE DIFFUSION UI\ComfyUI"
+```
+
+Or configure it permanently - see [Setup Guide](SETUP_GUIDE.md)
+
 ## 🚀 Quick Installation (30 seconds)
 
 ### Option 1: Desktop Extension (NEW! ✨)

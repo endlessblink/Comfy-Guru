@@ -4,15 +4,18 @@
   "version": "1.0.0",
   "description": "AI-powered log analysis for ComfyUI - automatically finds and analyzes your ComfyUI logs to identify errors, performance issues, and provide solutions",
   "author": {
-    "name": "endlessblink",
-    "email": "support@comfy-guru.dev"
+    "name": "endlessblink"
   },
   "server": {
-    "type": "stdio",
-    "command": "python3",
-    "args": ["-u", "server/standalone_mcp_server.py"],
-    "env": {
-      "PYTHONPATH": "server"
+    "type": "python",
+    "entry_point": "server/standalone_mcp_server.py",
+    "mcp_config": {
+      "command": "python",
+      "args": ["${__dirname}/server/standalone_mcp_server.py"],
+      "env": {
+        "PYTHONUNBUFFERED": "1",
+        "PYTHONIOENCODING": "utf-8"
+      }
     }
   },
   "icon": "icon.png",
@@ -25,22 +28,13 @@
   "requirements": {
     "python": ">=3.6"
   },
-  "platforms": {
-    "win32": {
-      "server": {
-        "command": "cmd.exe",
-        "args": ["/c", "server\\start_server.bat"],
-        "env": {}
-      }
-    }
-  },
   "tools": [
     {
       "name": "get_logs",
       "description": "Find all ComfyUI installations and their log files on the system"
     },
     {
-      "name": "find_errors",
+      "name": "find_errors", 
       "description": "Find and analyze errors in a ComfyUI log file with optional time filtering"
     },
     {
@@ -55,30 +49,5 @@
       "name": "find_workflow_by_id",
       "description": "Find specific workflow execution details by workflow ID in logs"
     }
-  ],
-  "prompts": [],
-  "user_config": {
-    "comfyui_path": {
-      "type": "string",
-      "title": "ComfyUI Path",
-      "description": "Path to your ComfyUI installation (optional - will auto-detect if not specified)",
-      "required": false
-    },
-    "enable_realtime": {
-      "type": "boolean",
-      "title": "Real-time Monitoring",
-      "description": "Enable real-time log monitoring",
-      "required": false,
-      "default": true
-    },
-    "log_retention_days": {
-      "type": "number",
-      "title": "Log Retention Days",
-      "description": "Number of days to retain log analysis history",
-      "required": false,
-      "default": 7,
-      "min": 1,
-      "max": 30
-    }
-  }
+  ]
 }

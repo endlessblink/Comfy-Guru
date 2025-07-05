@@ -1,0 +1,29 @@
+{
+  "dxt_version": "0.1",
+  "name": "comfy-guru-test",
+  "version": "1.0.0",
+  "description": "Minimal test server for debugging MCP connection issues",
+  "author": {
+    "name": "endlessblink",
+    "email": "support@comfy-guru.dev"
+  },
+  "server": {
+    "type": "stdio",
+    "command": "python",
+    "args": ["-u", "server/minimal_test_server.py"],
+    "env": {
+      "PYTHONUNBUFFERED": "1",
+      "PYTHONIOENCODING": "utf-8"
+    }
+  },
+  "platforms": {
+    "win32": {
+      "server": {
+        "command": "cmd.exe",
+        "args": ["/c", "cd /d server && python -u minimal_test_server.py"],
+        "env": {}
+      }
+    }
+  },
+  "tools": []
+}

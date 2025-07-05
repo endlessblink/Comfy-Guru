@@ -28,6 +28,13 @@ memories/
 /test_*.py
 examples/*.log
 /run_server.sh
+mcp_debug.log
+
+# Vendored dependencies
+src/lib/
+
+# Ensure all __pycache__ is ignored everywhere
+**/__pycache__/
 
 # Environment variables
 .env

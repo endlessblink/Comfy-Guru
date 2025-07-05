@@ -46,6 +46,9 @@ def create_extension():
         ("src/debugger_server.py", "server/debugger_server.py"),
         ("src/simple_active_discovery.py", "server/simple_active_discovery.py"),
         ("src/error_patterns.json", "server/error_patterns.json"),
+        ("src/server_launcher.py", "server/server_launcher.py"),
+        ("src/windows_launcher.bat", "server/windows_launcher.bat"),
+        ("src/minimal_test_server.py", "server/minimal_test_server.py"),
         ("src/start_server.bat", "server/start_server.bat"),
         ("src/setup_lib.bat", "server/setup_lib.bat"),
         ("src/setup_lib.py", "server/setup_lib.py"),
@@ -61,9 +64,10 @@ def create_extension():
         else:
             print(f"  Warning: {src} not found, skipping...")
     
-    # Create server/lib directory for dependencies
+    # Create server/lib directory for dependencies (empty, will be populated on first run)
     lib_dir = staging_dir / "server" / "lib"
     lib_dir.mkdir(exist_ok=True)
+    print("  Created: server/lib (dependencies will be installed on first run)")
     
     # Copy icon if it exists
     icon_src = root_dir / "docs" / "Images" / "Comfy-Guru.png"
