@@ -108,11 +108,21 @@ def verify_extension(dxt_file):
             # Validate manifest
             with zf.open('manifest.json') as f:
                 manifest = json.load(f)
-                required_fields = ['name', 'description', 'version', 'runtime', 'main']
+                required_fields = ['dxt_version', 'name', 'description', 'version', 'author', 'server']
                 for field in required_fields:
                     if field not in manifest:
                         print(f"❌ Error: Required field '{field}' missing from manifest")
                         return False
+                
+                # Validate author is an object
+                if not isinstance(manifest.get('author'), dict):
+                    print("❌ Error: 'author' must be an object with 'name' field")
+                    return False
+                
+                # Validate server has required fields
+                if 'runtime' not in manifest.get('server', {}):
+                    print("❌ Error: 'server.runtime' is required")
+                    return False
             
             print("✅ Extension verified successfully!")
             return True

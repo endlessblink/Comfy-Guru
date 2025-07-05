@@ -23,21 +23,34 @@ def test_manifest():
             manifest = json.load(f)
         
         # Check required fields
-        required = ['name', 'description', 'version', 'runtime', 'main']
+        required = ['dxt_version', 'name', 'description', 'version', 'author', 'server']
         for field in required:
             if field not in manifest:
                 print(f"✗ Missing required field: {field}")
                 return False
         
+        # Validate author format
+        if not isinstance(manifest.get('author'), dict) or 'name' not in manifest['author']:
+            print("✗ Author must be an object with 'name' field")
+            return False
+            
+        # Validate server format
+        if not isinstance(manifest.get('server'), dict) or 'runtime' not in manifest['server']:
+            print("✗ Server must be an object with 'runtime' field")
+            return False
+        
         print(f"  Name: {manifest['name']}")
         print(f"  Version: {manifest['version']}")
-        print(f"  Runtime: {manifest['runtime']}")
-        print(f"  Main: {manifest['main']}")
+        print(f"  Author: {manifest['author']['name']}")
+        print(f"  Runtime: {manifest['server']['runtime']}")
+        print(f"  Main: {manifest['server'].get('main', 'Not specified')}")
         
         # Verify main file exists
-        main_file = Path("/test/extension") / manifest['main']
-        if not main_file.exists():
-            print(f"✗ Main file not found: {manifest['main']}")
+        main_file = Path("/test/extension") / manifest['server'].get('main', '')
+        if main_file and main_file.exists():
+            print(f"  ✓ Main file found: {manifest['server']['main']}")
+        elif 'main' in manifest['server']:
+            print(f"✗ Main file not found: {manifest['server']['main']}")
             return False
             
         print("✓ Manifest is valid!")

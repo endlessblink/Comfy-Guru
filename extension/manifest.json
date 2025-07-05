@@ -1,20 +1,19 @@
 {
+  "dxt_version": "0.1.0",
   "name": "ComfyUI Log Debugger",
   "description": "AI-powered log analysis for ComfyUI - automatically finds and analyzes your ComfyUI logs to identify errors, performance issues, and provide solutions",
   "version": "1.0.0",
-  "author": "Shiba-2-shiba",
+  "author": {
+    "name": "Shiba-2-shiba",
+    "email": "contact@example.com"
+  },
   "homepage": "https://github.com/Shiba-2-shiba/comfy-guru",
   "license": "MIT",
-  "runtime": "python",
-  "main": "src/standalone_mcp_server.py",
+  "server": {
+    "runtime": "python",
+    "main": "src/standalone_mcp_server.py"
+  },
   "icon": "docs/Images/Comfy-Guru.png",
-  "minPythonVersion": "3.8",
-  "requirements": [
-    "mcp",
-    "aiofiles",
-    "psutil",
-    "watchdog"
-  ],
   "capabilities": [
     "filesystem",
     "process"
@@ -53,19 +52,5 @@
     "ENABLE_REALTIME": "${enable_realtime}",
     "LOG_RETENTION_DAYS": "${log_retention_days}",
     "CUSTOM_PATTERNS": "${custom_patterns}"
-  },
-  "platforms": {
-    "windows": {
-      "runtime": "python",
-      "pythonPath": "python"
-    },
-    "darwin": {
-      "runtime": "python",
-      "pythonPath": "python3"
-    },
-    "linux": {
-      "runtime": "python", 
-      "pythonPath": "python3"
-    }
   }
 }
