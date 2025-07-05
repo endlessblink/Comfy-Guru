@@ -36,6 +36,9 @@ src/lib/
 # Ensure all __pycache__ is ignored everywhere
 **/__pycache__/
 
+# Documentation screenshots (not needed for functionality)
+docs/Screenshots/
+
 # Environment variables
 .env
 .env.local
