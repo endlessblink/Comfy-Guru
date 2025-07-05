@@ -26,43 +26,62 @@ def create_extension():
         shutil.rmtree(staging_dir)
     staging_dir.mkdir()
     
-    # Files and directories to include
-    include_items = [
-        "extension/manifest.json",
-        "src/standalone_mcp_server.py",
-        "src/debugger_server.py", 
-        "src/simple_active_discovery.py",
-        "src/error_patterns.json",
-        "docs/Images/Comfy-Guru.png",
-        "requirements.txt",
-        "README.md",
-        "LICENSE"
-    ]
-    
-    # Copy files to staging directory
-    for item in include_items:
-        src_path = root_dir / item
-        if src_path.exists():
-            # Create directory structure in staging
-            dst_path = staging_dir / item
-            dst_path.parent.mkdir(parents=True, exist_ok=True)
-            
-            if src_path.is_file():
-                shutil.copy2(src_path, dst_path)
-                print(f"  Added: {item}")
-            else:
-                shutil.copytree(src_path, dst_path)
-                print(f"  Added directory: {item}")
-        else:
-            print(f"  Warning: {item} not found, skipping...")
-    
-    # Move manifest.json to root of staging directory
-    manifest_src = staging_dir / "extension" / "manifest.json"
+    # Copy manifest.json to root
+    manifest_src = root_dir / "extension" / "manifest.json"
     manifest_dst = staging_dir / "manifest.json"
     if manifest_src.exists():
-        shutil.move(str(manifest_src), str(manifest_dst))
-        # Remove empty extension directory
-        (staging_dir / "extension").rmdir()
+        shutil.copy2(manifest_src, manifest_dst)
+        print(f"  Added: manifest.json")
+    else:
+        print("  ERROR: manifest.json not found!")
+        return None
+    
+    # Create server directory and copy Python files
+    server_dir = staging_dir / "server"
+    server_dir.mkdir(exist_ok=True)
+    
+    # Python server files to include
+    python_files = [
+        ("src/standalone_mcp_server.py", "server/standalone_mcp_server.py"),
+        ("src/debugger_server.py", "server/debugger_server.py"),
+        ("src/simple_active_discovery.py", "server/simple_active_discovery.py"),
+        ("src/error_patterns.json", "server/error_patterns.json"),
+    ]
+    
+    for src, dst in python_files:
+        src_path = root_dir / src
+        dst_path = staging_dir / dst
+        if src_path.exists():
+            dst_path.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(src_path, dst_path)
+            print(f"  Added: {dst}")
+        else:
+            print(f"  Warning: {src} not found, skipping...")
+    
+    # Create server/lib directory for dependencies
+    lib_dir = staging_dir / "server" / "lib"
+    lib_dir.mkdir(exist_ok=True)
+    
+    # Copy icon if it exists
+    icon_src = root_dir / "docs" / "Images" / "Comfy-Guru.png"
+    icon_dst = staging_dir / "icon.png"
+    if icon_src.exists():
+        shutil.copy2(icon_src, icon_dst)
+        print(f"  Added: icon.png")
+    
+    # Copy optional files
+    optional_files = [
+        ("requirements.txt", "requirements.txt"),
+        ("README.md", "README.md"),
+        ("LICENSE", "LICENSE")
+    ]
+    
+    for src, dst in optional_files:
+        src_path = root_dir / src
+        dst_path = staging_dir / dst
+        if src_path.exists():
+            shutil.copy2(src_path, dst_path)
+            print(f"  Added: {dst}")
     
     # Create the .dxt file (ZIP archive)
     dxt_file = build_dir / "comfy-guru.dxt"
@@ -114,14 +133,26 @@ def verify_extension(dxt_file):
                         print(f"❌ Error: Required field '{field}' missing from manifest")
                         return False
                 
-                # Validate author is an object
-                if not isinstance(manifest.get('author'), dict):
+                # Validate dxt_version
+                if manifest.get('dxt_version') != '0.1':
+                    print(f"❌ Error: dxt_version must be '0.1', got '{manifest.get('dxt_version')}'")
+                    return False
+                
+                # Validate author is an object with name
+                if not isinstance(manifest.get('author'), dict) or 'name' not in manifest['author']:
                     print("❌ Error: 'author' must be an object with 'name' field")
                     return False
                 
                 # Validate server has required fields
-                if 'runtime' not in manifest.get('server', {}):
-                    print("❌ Error: 'server.runtime' is required")
+                server = manifest.get('server', {})
+                if 'type' not in server:
+                    print("❌ Error: 'server.type' is required")
+                    return False
+                if 'entry_point' not in server:
+                    print("❌ Error: 'server.entry_point' is required")
+                    return False
+                if 'mcp_config' not in server:
+                    print("❌ Error: 'server.mcp_config' is required")
                     return False
             
             print("✅ Extension verified successfully!")

@@ -1,56 +1,57 @@
 {
-  "dxt_version": "0.1.0",
-  "name": "ComfyUI Log Debugger",
-  "description": "AI-powered log analysis for ComfyUI - automatically finds and analyzes your ComfyUI logs to identify errors, performance issues, and provide solutions",
+  "dxt_version": "0.1",
+  "name": "comfy-guru",
   "version": "1.0.0",
+  "description": "AI-powered log analysis for ComfyUI - automatically finds and analyzes your ComfyUI logs to identify errors, performance issues, and provide solutions",
   "author": {
-    "name": "Shiba-2-shiba",
-    "email": "contact@example.com"
+    "name": "Shiba-2-shiba"
   },
-  "homepage": "https://github.com/Shiba-2-shiba/comfy-guru",
-  "license": "MIT",
   "server": {
-    "runtime": "python",
-    "main": "src/standalone_mcp_server.py"
-  },
-  "icon": "docs/Images/Comfy-Guru.png",
-  "capabilities": [
-    "filesystem",
-    "process"
-  ],
-  "configuration": {
-    "schema": {
-      "type": "object",
-      "properties": {
-        "comfyui_path": {
-          "type": "string",
-          "description": "Path to your ComfyUI installation (optional - will auto-detect if not specified)",
-          "default": ""
-        },
-        "enable_realtime": {
-          "type": "boolean",
-          "description": "Enable real-time log monitoring",
-          "default": true
-        },
-        "log_retention_days": {
-          "type": "integer",
-          "description": "Number of days to retain log analysis history",
-          "default": 7,
-          "minimum": 1,
-          "maximum": 30
-        },
-        "custom_patterns": {
-          "type": "string",
-          "description": "Path to custom error patterns JSON file (optional)",
-          "default": ""
-        }
+    "type": "python",
+    "entry_point": "server/standalone_mcp_server.py",
+    "mcp_config": {
+      "command": "python",
+      "args": ["${__dirname}/server/standalone_mcp_server.py"],
+      "env": {
+        "PYTHONPATH": "${__dirname}/server/lib"
       }
     }
   },
-  "env": {
-    "COMFYUI_PATH": "${comfyui_path}",
-    "ENABLE_REALTIME": "${enable_realtime}",
-    "LOG_RETENTION_DAYS": "${log_retention_days}",
-    "CUSTOM_PATTERNS": "${custom_patterns}"
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Shiba-2-shiba/comfy-guru"
+  },
+  "homepage": "https://github.com/Shiba-2-shiba/comfy-guru",
+  "support": "https://github.com/Shiba-2-shiba/comfy-guru/issues",
+  "compatibility": {
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": {
+      "python": ">=3.8,<4.0"
+    }
+  },
+  "user_config": {
+    "comfyui_path": {
+      "type": "string",
+      "title": "ComfyUI Path",
+      "description": "Path to your ComfyUI installation (optional - will auto-detect if not specified)",
+      "required": false
+    },
+    "enable_realtime": {
+      "type": "boolean",
+      "title": "Real-time Monitoring",
+      "description": "Enable real-time log monitoring",
+      "required": false,
+      "default": true
+    },
+    "log_retention_days": {
+      "type": "number",
+      "title": "Log Retention Days",
+      "description": "Number of days to retain log analysis history",
+      "required": false,
+      "default": 7,
+      "min": 1,
+      "max": 30
+    }
   }
 }

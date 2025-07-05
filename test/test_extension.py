@@ -29,28 +29,43 @@ def test_manifest():
                 print(f"✗ Missing required field: {field}")
                 return False
         
+        # Validate dxt_version
+        if manifest.get('dxt_version') != '0.1':
+            print(f"✗ dxt_version must be '0.1', got '{manifest.get('dxt_version')}'")
+            return False
+            
         # Validate author format
         if not isinstance(manifest.get('author'), dict) or 'name' not in manifest['author']:
             print("✗ Author must be an object with 'name' field")
             return False
             
         # Validate server format
-        if not isinstance(manifest.get('server'), dict) or 'runtime' not in manifest['server']:
-            print("✗ Server must be an object with 'runtime' field")
+        server = manifest.get('server', {})
+        if not isinstance(server, dict):
+            print("✗ Server must be an object")
+            return False
+        if 'type' not in server:
+            print("✗ Server must have 'type' field")
+            return False
+        if 'entry_point' not in server:
+            print("✗ Server must have 'entry_point' field")
+            return False
+        if 'mcp_config' not in server:
+            print("✗ Server must have 'mcp_config' field")
             return False
         
         print(f"  Name: {manifest['name']}")
         print(f"  Version: {manifest['version']}")
         print(f"  Author: {manifest['author']['name']}")
-        print(f"  Runtime: {manifest['server']['runtime']}")
-        print(f"  Main: {manifest['server'].get('main', 'Not specified')}")
+        print(f"  Server Type: {server['type']}")
+        print(f"  Entry Point: {server['entry_point']}")
         
-        # Verify main file exists
-        main_file = Path("/test/extension") / manifest['server'].get('main', '')
-        if main_file and main_file.exists():
-            print(f"  ✓ Main file found: {manifest['server']['main']}")
-        elif 'main' in manifest['server']:
-            print(f"✗ Main file not found: {manifest['server']['main']}")
+        # Verify entry point file exists
+        entry_file = Path("/test/extension") / server['entry_point']
+        if entry_file.exists():
+            print(f"  ✓ Entry point found: {server['entry_point']}")
+        else:
+            print(f"✗ Entry point not found: {server['entry_point']}")
             return False
             
         print("✓ Manifest is valid!")
@@ -87,9 +102,9 @@ def test_server_syntax():
     print("\n✓ Testing Python syntax...")
     
     python_files = [
-        "/test/extension/src/standalone_mcp_server.py",
-        "/test/extension/src/debugger_server.py",
-        "/test/extension/src/simple_active_discovery.py"
+        "/test/extension/server/standalone_mcp_server.py",
+        "/test/extension/server/debugger_server.py",
+        "/test/extension/server/simple_active_discovery.py"
     ]
     
     for file_path in python_files:
@@ -133,7 +148,7 @@ async def test_server_startup():
         # Start the server process
         proc = await asyncio.create_subprocess_exec(
             sys.executable,
-            '/test/extension/src/standalone_mcp_server.py',
+            '/test/extension/server/standalone_mcp_server.py',
             env=env,
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE
@@ -173,10 +188,11 @@ def test_file_structure():
     
     expected_files = [
         "manifest.json",
-        "src/standalone_mcp_server.py",
-        "src/debugger_server.py",
-        "src/simple_active_discovery.py",
-        "src/error_patterns.json",
+        "server/standalone_mcp_server.py",
+        "server/debugger_server.py",
+        "server/simple_active_discovery.py",
+        "server/error_patterns.json",
+        "icon.png",
         "requirements.txt",
         "README.md"
     ]
