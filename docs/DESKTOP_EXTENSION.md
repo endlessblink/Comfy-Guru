@@ -21,10 +21,12 @@ This creates `build/comfy-guru.dxt` - your installable extension file.
 
 1. Open Claude Desktop
 2. Go to **Settings** → **Developer** → **Edit Config**
-3. Click **Install Extension...**
-4. Select the `comfy-guru.dxt` file from the `build` folder
+3. Click **"Install Extension..."** button
+4. Browse and select the `comfy-guru.dxt` file
 5. Configure your settings if prompted
 6. Restart Claude Desktop
+
+**Important:** You must install through Claude Desktop's settings. Double-clicking the .dxt file won't work as Windows doesn't know how to handle this file type.
 
 That's it! 🎉
 
