@@ -8,14 +8,11 @@
     "email": "support@comfy-guru.dev"
   },
   "server": {
-    "type": "python",
-    "entry_point": "server/standalone_mcp_server.py",
-    "mcp_config": {
-      "command": "python",
-      "args": ["${__dirname}/server/standalone_mcp_server.py"],
-      "env": {
-        "PYTHONPATH": "${__dirname}/server/lib"
-      }
+    "type": "stdio",
+    "command": "python3",
+    "args": ["-u", "server/standalone_mcp_server.py"],
+    "env": {
+      "PYTHONPATH": "server"
     }
   },
   "icon": "icon.png",
@@ -27,6 +24,15 @@
   "support": "https://github.com/endlessblink/comfy-guru/issues",
   "requirements": {
     "python": ">=3.6"
+  },
+  "platforms": {
+    "win32": {
+      "server": {
+        "command": "cmd.exe",
+        "args": ["/c", "server\\start_server.bat"],
+        "env": {}
+      }
+    }
   },
   "tools": [
     {

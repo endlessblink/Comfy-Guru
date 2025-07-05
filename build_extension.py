@@ -46,6 +46,9 @@ def create_extension():
         ("src/debugger_server.py", "server/debugger_server.py"),
         ("src/simple_active_discovery.py", "server/simple_active_discovery.py"),
         ("src/error_patterns.json", "server/error_patterns.json"),
+        ("src/start_server.bat", "server/start_server.bat"),
+        ("src/setup_lib.bat", "server/setup_lib.bat"),
+        ("src/setup_lib.py", "server/setup_lib.py"),
     ]
     
     for src, dst in python_files:
@@ -148,12 +151,19 @@ def verify_extension(dxt_file):
                 if 'type' not in server:
                     print("❌ Error: 'server.type' is required")
                     return False
-                if 'entry_point' not in server:
-                    print("❌ Error: 'server.entry_point' is required")
-                    return False
-                if 'mcp_config' not in server:
-                    print("❌ Error: 'server.mcp_config' is required")
-                    return False
+                
+                # For stdio type servers, command and args are required
+                if server['type'] == 'stdio':
+                    if 'command' not in server:
+                        print("❌ Error: 'server.command' is required for stdio type servers")
+                        return False
+                    if 'args' not in server:
+                        print("❌ Error: 'server.args' is required for stdio type servers")
+                        return False
+                else:
+                    if 'entry_point' not in server:
+                        print("❌ Error: 'server.entry_point' is required")
+                        return False
             
             print("✅ Extension verified successfully!")
             return True
